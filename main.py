@@ -15,6 +15,8 @@ def weather():
     cloudiness = soup.find("div", class_="widget-row widget-row-icon").find_all('div', class_='row-item')
     degree = soup.find("div", class_="widget-row-chart widget-row-chart-temperature").find_all('div', class_='value style_size_m')
 
+    # we create lists and put parsed data into this lists
+
     day_list=[]
     cloudiness_list=[]
     degree_list=[]
@@ -27,6 +29,8 @@ def weather():
         degree_list.append(str(smg.find('div', class_='maxt').find('span', class_='unit unit_temperature_c').text.strip())+
                            ' .. '+str(smg.find('div', class_='mint').find('span', class_='unit unit_temperature_c').text.strip()))
 
+    # here we correlate days, cloudiness and degrees and unite them into a list.
+    # Then we transform list into string
     a=[]
     for i in zip(day_list, cloudiness_list, degree_list):
         a.append('  '.join(i))
